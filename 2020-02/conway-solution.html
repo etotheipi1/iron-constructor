@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solution - John Horton Conway</title>
+</head>
+
+<body>
+    <style>
+        td b { color: red}
+    </style>
+
+    <header>
+        <h1>S<small>OLUTION</small>: John Horton Conway</h1>
+        <div style="flex-grow: 100;"></div>
+        <input id="see_puzzle" type="button" value="See Puzzle" onclick="window.location='conway.html'">
+    </header>
+
+    <main>
+        <p>
+            Conway inspired me with his playful approach toward mathematics.
+            He passed away from COVID in 2020.
+        </p>
+        <p>
+            I'm very new at making hunt-style puzzles. I hope it wasn't too frustrating to solve.
+        </p>
+
+        <h2>Look and Say</h2>
+        <p>
+            This puzzle is about <a href="https://en.wikipedia.org/wiki/Look-and-say_sequence">look-and-say sequence</a>, which was studied by Conway.
+            Undo 5 iterations of look-and-say to get a number A repeated B times.
+            Sort by A and read B to get the answer <b>VOICE</b>.
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Look and say sequence</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Letter</th>
+                </tr>
+                <tr>
+                    <td>1111111111111111111111 → 221 → 2211 → 2221 → 3211 → 131221</td>
+                    <td>1</td>
+                    <td>22</td>
+                    <td><b>V</b></td>
+                </tr>
+                <tr>
+                    <td>222222222222222 → 152 → 111512 → 31151112 → 1321153112 → 1113122115132112</td>
+                    <td>2</td>
+                    <td>15</td>
+                    <td><b>O</b></td>
+                </tr>
+                <tr>
+                    <td>333333333 → 93 → 1913 → 11191113 → 31193113 → 132119132113</td>
+                    <td>3</td>
+                    <td>9</td>
+                    <td><b>I</b></td>
+                </tr>
+                <tr>
+                    <td>444 → 34 → 1314 → 11131114 → 31133114 → 1321232114</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td><b>C</b></td>
+                </tr>
+                <tr>
+                    <td>55555 → 55 → 25 → 1215 → 11121115 → 31123115</td>
+                    <td>5</td>
+                    <td>5</td>
+                    <td><b>E</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h2>Pentominoes</h2>
+        <img src="pentomino_names.png" style="width: 500px;">
+        <p>
+            Pentominoes are usually refered to using Solomon Golomb's naming scheme, but Conway proposed an elegant alternative that uses consecutive letters from O to Z.
+            Identify the pictures and Conway's pentomino names. There is exactly one difference in letter for each picture.
+            Sort by picture's wrong letter and reading the wrong pentomino names reveal the answer <b>SPROUTS</b>, a combinatorial game created by Conway.
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Picture</th>
+                    <th>Set of pentominoes</th>
+                </tr>
+                <tr>
+                    <td><b>F</b>ROSTY</td>
+                    <td><b>T</b>ROSTY</td>
+                </tr>
+                <tr>
+                    <td>O<b>C</b>TOPUS</td>
+                    <td>O<b>R</b>TOPUS</td>
+                </tr>
+                <tr>
+                    <td>OYST<b>E</b>R</td>
+                    <td>OYST<b>U</b>R</td>
+                </tr>
+                <tr>
+                    <td>P<b>A</b>SSPORT</td>
+                    <td>P<b>S</b>SSPORT</td>
+                </tr>
+                <tr>
+                    <td>RO<b>B</b>OT</td>
+                    <td>RO<b>P</b>OT</td>
+                </tr>
+                <tr>
+                    <td>SWOR<b>D</b></td>
+                    <td>SWOR<b>O</b></td>
+                </tr>
+                <tr>
+                    <td>YO<b>G</b>URT</td>
+                    <td>YO<b>S</b>URT</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Next Doomsday</h2>
+        <p>
+            This puzzle concerns <a href="https://en.wikipedia.org/wiki/Doomsday_rule">Doomsday Algorithm</a>, which was invented by Conway.
+            Find the next doomsday and read the date to get the answer <b>THURSDAY</b>.
+            All the dates given in the puzzle also happen to be Thursdays.
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Given date</th>
+                    <th>Next doomsday</th>
+                    <th>Letter</th>
+                </tr>
+                <tr>
+                    <td>2001-06-14</td>
+                    <td>2001-06-20</td>
+                    <td><b>T</b></td>
+                </tr>
+                <tr>
+                    <td>2002-08-01</td>
+                    <td>2002-08-08</td>
+                    <td><b>H</b></td>
+                </tr>
+                <tr>
+                    <td>2003-03-20</td>
+                    <td>2003-03-21</td>
+                    <td><b>U</b></td>
+                </tr>
+                <tr>
+                    <td>2004-01-15</td>
+                    <td>2004-01-18</td>
+                    <td><b>R</b></td>
+                </tr>
+                <tr>
+                    <td>2005-12-15</td>
+                    <td>2005-12-19</td>
+                    <td><b>S</b></td>
+                </tr>
+                <tr>
+                    <td>2006-03-30</td>
+                    <td>2006-04-04</td>
+                    <td><b>D</b></td>
+                </tr>
+                <tr>
+                    <td>2007-07-26</td>
+                    <td>2007-08-01</td>
+                    <td><b>A</b></td>
+                </tr>
+                <tr>
+                    <td>2008-04-24</td>
+                    <td>2008-04-25</td>
+                    <td><b>Y</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Winning Ways</h2>
+        <p>
+            This puzzle is depicting game states of <a href="https://en.wikipedia.org/wiki/Hackenbush">Hackenbush</a>,
+            a combinatorial game created by Conway.
+            A detailed analysis of the game can be found in chapter 7 of "Winning Ways for Mathematical Plays", which was coauthored by Conway 
+            (and Hackenbush is shown on the cover of the latest edition of the book),
+            but the given game states are small enough to just brute force by hand.
+            Reading the unique winning moves yields <b>NIMBER</b>, which is a number system used to evaluate
+            the positions of Green Hackenbush and other impartial games like <a href="https://en.wikipedia.org/wiki/Nim">Nim</a>.
+        </p>
+
+        <h2>META: Atlas of Sporadic Groups</h2>
+        <p>
+            This last part is refering to <a href="https://en.wikipedia.org/wiki/Sporadic_group">sporadic groups</a>,
+            where Conway had significant contribution in their development.
+            The diagram given is showing subquotient relations of the 26 sporadic groups
+            (same diagram is given in the wikipedia page for sporadic groups).
+        </p>
+        <p>
+            The title is also referencing <a href="http://brauer.maths.qmul.ac.uk/Atlas/v3/">ATLAS of Finite Groups</a>.
+            Conway was one of the authors of the initial book version.
+            The look of this puzzle is very close to the atlas site to confirm this lead.
+            The page for sporadic groups gives us the order to match the letters in the feeder answers to sporadic groups,
+            and the answer is <b>ICOSIANS</b>, yet another mathematical object created by Conway.
+        </p>
+        <object data="sporadic_groups_solution.svg" style="width: 400px;"></object>
+        <p>
+            Game of Life wasn't used in the puzzle, because Conway was annoyed by the fact that many people only knew him for it and nothing else.
+        </p>
+    </main>
+</body>
