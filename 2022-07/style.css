@@ -1,0 +1,223 @@
+:root {
+    --main-color: white;
+    --main-hover-color: #179E3F;
+    --main-text-color: black;
+
+    --font: 'Montserrat', sans-serif;
+    --normal-font-size: 18px;
+}
+
+body {
+    background-color: var(--main-color);
+    color: var(--main-text-color);
+    font-family: var(--font);
+    line-height: 1.5;
+    font-size: var(--normal-font-size);
+    margin: 0px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main {
+    width: 80%;
+    max-width: 1000px;
+    /* margin: 0 auto; */
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+h1, h2, h3 {
+    font-family: var(--title-font);
+    padding: 8px 0px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+a:link {
+    color: var(--main-hover-color);
+}
+a:visited {
+    color: var(--main-hover-color);
+}
+
+object {
+    display: block;
+    margin: 0 auto;
+}
+
+hr {
+    margin: 40px 0px;
+}
+
+#answer_form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+#input_row {
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+    height: 32px;
+}
+
+#output_row {
+    height: 32px;
+}
+
+#back_row {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    height: 32px;
+    width: 100%;
+}
+
+#answer_input {
+    flex-grow: 100;
+}
+
+input {
+    font-family: var(--font);
+    font-size: 1em;
+    margin: 0 4px;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 50%;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+th {
+    background-color: var(--main-color);
+    padding: 4px 16px;
+    font-weight: bold;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+td {
+    padding: 4px 16px;
+    word-wrap: break-word;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+td b { color: red}
+
+td .sprite {
+    width: 120px;
+    height: 120px;
+    display: block;
+}
+
+td .sprite {
+    width: 160px;
+    height: 160px;
+    display: block;
+    transform: scale(.9);
+    zoom: 0.9;
+}
+#sprite-10b { background: url(atlas.png) -1px -1px;}
+#sprite-11b { background: url(atlas.png) -163px -1px; }
+#sprite-12b { background: url(atlas.png) -325px -1px; }
+#sprite-13b { background: url(atlas.png) -487px -1px; }
+#sprite-14b { background: url(atlas.png) -649px -1px; }
+#sprite-15b { background: url(atlas.png) -811px -1px; }
+#sprite-16b { background: url(atlas.png) -973px -1px; }
+#sprite-17b { background: url(atlas.png) -1px -163px; }
+#sprite-18b { background: url(atlas.png) -163px -163px; }
+#sprite-19b { background: url(atlas.png) -325px -163px; }
+#sprite-1b { background: url(atlas.png) -487px -163px; }
+#sprite-20b { background: url(atlas.png) -649px -163px; }
+#sprite-21b { background: url(atlas.png) -811px -163px; }
+#sprite-2b { background: url(atlas.png) -973px -163px; }
+#sprite-3b { background: url(atlas.png) -1px -325px; }
+#sprite-4b { background: url(atlas.png) -163px -325px; }
+#sprite-5b { background: url(atlas.png) -325px -325px; }
+#sprite-6b { background: url(atlas.png) -487px -325px; }
+#sprite-7b { background: url(atlas.png) -649px -325px; }
+#sprite-8b { background: url(atlas.png) -811px -325px; }
+#sprite-9b { background: url(atlas.png) -973px -325px; }
+#sprite-1a { background: url(atlas.png) -1px -487px; }
+#sprite-2a { background: url(atlas.png) -163px -487px; }
+#sprite-3a { background: url(atlas.png) -325px -487px; }
+#sprite-4a { background: url(atlas.png) -487px -487px; }
+#sprite-5a { background: url(atlas.png) -649px -487px; }
+#sprite-6a { background: url(atlas.png) -811px -487px; }
+#sprite-7a { background: url(atlas.png) -973px -487px; }
+#sprite-8a { background: url(atlas.png) -1px -649px; }
+#sprite-9a { background: url(atlas.png) -163px -649px; }
+#sprite-10a { background: url(atlas.png) -325px -649px; }
+#sprite-11a { background: url(atlas.png) -487px -649px; }
+#sprite-12a { background: url(atlas.png) -649px -649px; }
+#sprite-13a { background: url(atlas.png) -811px -649px; }
+#sprite-14a { background: url(atlas.png) -973px -649px; }
+#sprite-15a { background: url(atlas.png) -1px -811px; }
+#sprite-16a { background: url(atlas.png) -163px -811px; }
+#sprite-17a { background: url(atlas.png) -325px -811px; }
+#sprite-18a { background: url(atlas.png) -487px -811px; }
+#sprite-19a { background: url(atlas.png) -649px -811px; }
+#sprite-20a { background: url(atlas.png) -811px -811px; }
+#sprite-21a { background: url(atlas.png) -973px -811px; }
+
+@media (max-width: 1080px) {
+    body {
+        font-size: 16px;
+    }
+    main {
+        width: 90%;
+    }
+    td .sprite {
+        transform: scale(.75);
+        zoom: 0.75;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        font-size: 14px;
+    }
+    main {
+        width: 90%;
+    }
+    td .sprite {
+        transform: scale(.75);
+        zoom: 0.75;
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        font-size: 12px;
+    }
+    main {
+        width: 96%;
+    }
+    td .sprite {
+        transform: scale(.6);
+        zoom: 0.6;
+    }
+    td {
+        padding: 2px;
+    }
+}

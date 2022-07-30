@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/iron-constructor/favicon.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puzzle - Cycle</title>
+</head>
+
+<body>
+    <main>
+        <h1>Cycle</h1>
+        
+        <br/>
+        
+        <form id="answer_form">
+            <div id="input_row">
+                <input id="answer_input" type="text">
+                <input id="answer_submit" type="submit" value="Check Answer">
+                <input id="see_solution" type="button" value="See Solution" onclick="window.location='cycle-solution.html'">
+            </div>
+            <div id="output_row">
+                <span id="answer_output"></span>
+            </div>
+        </form>
+        
+        <br/>
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <pre style="margin: 0;">UGMNYLXUGZCZNSMYPYH
+MFCVEURDEZEVKPEZEV
+CPDUZINZQZIOTNZQZI
+GRQSGGXLOLZEUTK
+YVAALYKHTZLCLUAF
+UMLMUJTQSVQVMBG
+SZZCYPTRSEJZYP
+QJQDXYFIKNKYD
+NGGXRKSKOMNZELUAX
+GZZPRVMYZIADAOTNZQZI
+MBQXPAADZRAGD
+HJIIDXFZIYVHADAOTADQZ
+AZXKINZZNOXZEUTK
+OHPPHUIRUWBVLA
+OCZCVBPZADAOTNDS
+PIZTQVOMVVQVMBGBPZMM
+TCZWJXOTCIWXGIN
+WNJDAIBKQNPUKJA
+LXPCDQZZCEYTYPEJPTRSE
+FCURRKLOBK
+QXNGDSFIA
+OAGHSFROAGWLHMGWL</pre>
+        
+            <object data="cycle.svg" style="width: 60%; margin:0;"></object>
+        </div>
+    </main>
+
+    <script>
+        // sha256 without dependency, copied from stackoverflow :p
+        // https://stackoverflow.com/questions/59777670/how-can-i-hash-a-string-with-sha256-in-js        
+        function sha256(ascii) {
+            function rightRotate(value, amount) {
+                return (value>>>amount) | (value<<(32 - amount));
+            };
+            
+            var mathPow = Math.pow;
+            var maxWord = mathPow(2, 32);
+            var lengthProperty = 'length'
+            var i, j; // Used as a counter across the whole file
+            var result = ''
+
+            var words = [];
+            var asciiBitLength = ascii[lengthProperty]*8;
+            
+            //* caching results is optional - remove/add slash from front of this line to toggle
+            // Initial hash value: first 32 bits of the fractional parts of the square roots of the first 8 primes
+            // (we actually calculate the first 64, but extra values are just ignored)
+            var hash = sha256.h = sha256.h || [];
+            // Round constants: first 32 bits of the fractional parts of the cube roots of the first 64 primes
+            var k = sha256.k = sha256.k || [];
+            var primeCounter = k[lengthProperty];
+            /*/
+            var hash = [], k = [];
+            var primeCounter = 0;
+            //*/
+
+            var isComposite = {};
+            for (var candidate = 2; primeCounter < 64; candidate++) {
+                if (!isComposite[candidate]) {
+                    for (i = 0; i < 313; i += candidate) {
+                        isComposite[i] = candidate;
+                    }
+                    hash[primeCounter] = (mathPow(candidate, .5)*maxWord)|0;
+                    k[primeCounter++] = (mathPow(candidate, 1/3)*maxWord)|0;
+                }
+            }
+            
+            ascii += '\x80' // Append Ƈ' bit (plus zero padding)
+            while (ascii[lengthProperty]%64 - 56) ascii += '\x00' // More zero padding
+            for (i = 0; i < ascii[lengthProperty]; i++) {
+                j = ascii.charCodeAt(i);
+                if (j>>8) return; // ASCII check: only accept characters in range 0-255
+                words[i>>2] |= j << ((3 - i)%4)*8;
+            }
+            words[words[lengthProperty]] = ((asciiBitLength/maxWord)|0);
+            words[words[lengthProperty]] = (asciiBitLength)
+            
+            // process each chunk
+            for (j = 0; j < words[lengthProperty];) {
+                var w = words.slice(j, j += 16); // The message is expanded into 64 words as part of the iteration
+                var oldHash = hash;
+                // This is now the undefinedworking hash", often labelled as variables a...g
+                // (we have to truncate as well, otherwise extra entries at the end accumulate
+                hash = hash.slice(0, 8);
+                
+                for (i = 0; i < 64; i++) {
+                    var i2 = i + j;
+                    // Expand the message into 64 words
+                    // Used below if 
+                    var w15 = w[i - 15], w2 = w[i - 2];
+
+                    // Iterate
+                    var a = hash[0], e = hash[4];
+                    var temp1 = hash[7]
+                        + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) // S1
+                        + ((e&hash[5])^((~e)&hash[6])) // ch
+                        + k[i]
+                        // Expand the message schedule if needed
+                        + (w[i] = (i < 16) ? w[i] : (
+                                w[i - 16]
+                                + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15>>>3)) // s0
+                                + w[i - 7]
+                                + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2>>>10)) // s1
+                            )|0
+                        );
+                    // This is only used once, so *could* be moved below, but it only saves 4 bytes and makes things unreadble
+                    var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) // S0
+                        + ((a&hash[1])^(a&hash[2])^(hash[1]&hash[2])); // maj
+                    
+                    hash = [(temp1 + temp2)|0].concat(hash); // We don't bother trimming off the extra ones, they're harmless as long as we're truncating when we do the slice()
+                    hash[4] = (hash[4] + temp1)|0;
+                }
+                
+                for (i = 0; i < 8; i++) {
+                    hash[i] = (hash[i] + oldHash[i])|0;
+                }
+            }
+            
+            for (i = 0; i < 8; i++) {
+                for (j = 3; j + 1; j--) {
+                    var b = (hash[i]>>(j*8))&255;
+                    result += ((b < 16) ? 0 : '') + b.toString(16);
+                }
+            }
+            return result;
+        }
+        
+        function check_answer(event) {
+            var answer = document.getElementById("answer_input").value;
+            
+            // sanitize the input answer so that it is only consisting of upper case alphabets.
+            answer = answer.toUpperCase();
+            var legal_chars = [];
+            for (var i=0; i<answer.length; i++) {
+                var c = answer.charAt(i);
+                if ('A' <= c && c <= 'Z') {
+                    legal_chars.push(c);
+                }
+            }
+            answer = legal_chars.join('');
+            
+            // compute the hash and check the answer
+            var output = document.getElementById("answer_output");
+            var answer_hash = sha256('IronConstruction:' + answer);
+            var goal_hash = "81feb241bfdbd62fe9245b65756a1d5f4e84bbe095b5d3583827d50e48b11b6e";
+            if (answer_hash == goal_hash) {
+                output.innerHTML = answer + " is correct!";
+                output.style = "color: green; margin: 0 4px;"
+            }
+            else {
+                output.innerHTML = answer + " is wrong";
+                output.style = "color: red; margin: 0 4px;"
+            }
+
+            event.preventDefault();
+        }
+        
+        var form = document.getElementById("answer_form");
+        if (form) {
+            form.addEventListener('submit', check_answer);
+        }
+    </script>
+</body>

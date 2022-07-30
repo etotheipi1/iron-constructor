@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/iron-constructor/favicon.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solution - Cycle</title>
+</head>
+
+<body>
+    <main>
+        <h1>Solution: Cycle</h1>
+        <br/>
+        <div id="back_row">
+            <input id="see_puzzle" type="button" value="See Puzzle" onclick="window.location='cycle.html'">
+        </div>
+        <br/>
+        
+        <p>
+            The given strings can be rotated, or cycled, to spell out a name of a city/town in the Netherlands and a number. The amount to shift by can be read as "FIETSROUTENETWERK DOT NL" using A1Z26.
+        </p>
+        
+        <table style="font-size: 0.8em">
+            <tbody>
+                <tr>
+                    <th>Encoded String</th>
+                    <th>Decoded String</th>
+                    <th>Shift by</th>
+                    <th>Letter extracted</th>
+                </tr>
+                <tr>
+                    <td>UGMNYLXUGZCZNSMYPYH</td>
+                    <td><b>AMSTERDAM</b>FIFTYSEVEN</td>
+                    <td>6</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td>MFCVEURDEZEVKPEZEV</td>
+                    <td><b>VOLENDAM</b>NINETYNINE</td>
+                    <td>9</td>
+                    <td>I</td>
+                </tr>
+                <tr>
+                    <td>CPDUZINZQZIOTNZQZI</td>
+                    <td><b>HUIZEN</b>SEVENTYSEVEN</td>
+                    <td>5</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>GRQSGGXLOLZEUTK</td>
+                    <td><b>ALKMAAR</b>FIFTYONE</td>
+                    <td>20</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td>YVAALYKHTZLCLUAF</td>
+                    <td><b>ROTTERDAM</b>SEVENTY</td>
+                    <td>19</td>
+                    <td>S</td>
+                </tr>
+                <tr>
+                    <td>UMLMUJTQSVQVMBG</td>
+                    <td><b>MEDEMBLIK</b>NINETY</td>
+                    <td>18</td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <td>SZZCYPTRSEJZYP</td>
+                    <td><b>HOORN</b>EIGHTYONE</td>
+                    <td>15</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>QJQDXYFIKNKYD</td>
+                    <td><b>LELYSTAD</b>FIFTY</td>
+                    <td>21</td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <td>NGGXRKSKOMNZELUAX</td>
+                    <td><b>HAARLEM</b>EIGHTYFOUR</td>
+                    <td>20</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td>GZZPRVMYZIADAOTNZQZI</td>
+                    <td><b>LEEUWARDEN</b>FIFTYSEVEN</td>
+                    <td>5</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>MBQXPAADZRAGD</td>
+                    <td><b>APELDOORN</b>FOUR</td>
+                    <td>14</td>
+                    <td>N</td>
+                </tr>
+                <tr>
+                    <td>HJIIDXFZIYVHADAOTADQZ</td>
+                    <td><b>MONNICKENDAM</b>FIFTYFIVE</td>
+                    <td>5</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>AZXKINZZNOXZEUTK</td>
+                    <td><b>UTRECHT</b>THIRTYONE</td>
+                    <td>20</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td>OHPPHUIRUWBVLA</td>
+                    <td><b>LEMMER</b>FORTYSIX</td>
+                    <td>23</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td>OCZCVBPZADAOTNDS</td>
+                    <td><b>THEHAGUE</b>FIFTYSIX</td>
+                    <td>5</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>PIZTQVOMVVQVMBGBPZMM</td>
+                    <td><b>HARLINGEN</b>NINETYTHREE</td>
+                    <td>18</td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <td>TCZWJXOTCIWXGIN</td>
+                    <td><b>ENKHUIZEN</b>THIRTY</td>
+                    <td>11</td>
+                    <td>K</td>
+                </tr>
+                <tr>
+                    <td>WNJDAIBKQNPUKJA</td>
+                    <td><b>ARNHEM</b>FOURTYONE</td>
+                    <td>4</td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <td>LXPCDQZZCEYTYPEJPTRSE</td>
+                    <td><b>AMERSFOORT</b>NINETYEIGHT</td>
+                    <td>15</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>FCURRKLOBK</td>
+                    <td><b>ZWOLLE</b>FIVE</td>
+                    <td>20</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td>QXNGDSFIA</td>
+                    <td><b>ELBURG</b>TWO</td>
+                    <td>14</td>
+                    <td>N</td>
+                </tr>
+                <tr>
+                    <td>OAGHSFROAGWLHMGWL</td>
+                    <td><b>AMSTERDAM</b>SIXTYSIX</td>
+                    <td>12</td>
+                    <td>L</td>
+                </tr>
+            </tbody>
+        <table>
+        
+        <p>
+            Fietsroutenetwerk is a Dutch term for <a href="https://en.wikipedia.org/wiki/Numbered-node_cycle_network">numbered-node cycle network</a> and <a href="https://fietsroutenetwerk.nl/">fietsroutenetwerk.nl</a> is a website that provides the map of Dutch fietsroutenetwerk.
+            The next step is to start from the numbered node in the city/town, find a corresponding green graph and use the site to map out the graph. They draw letters when we do so.
+        </p>
+        
+        <table style="font-size: 0.8em; width:100%;">
+            <tbody>
+                <tr>
+                    <th>Decoded String</th>
+                    <th>Graph</th>
+                    <th>Map</th>
+                    <th>Letter</th>
+                </tr>
+                <tr>
+                    <td><b>AMSTERDAM</b>FIFTYSEVEN</td>
+                    <td><div id="sprite-1a" class="sprite"></td>
+                    <td><div id="sprite-1b" class="sprite"></td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td><b>VOLENDAM</b>NINETYNINE</td>
+                    <td><div id="sprite-2a" class="sprite"></td>
+                    <td><div id="sprite-2b" class="sprite"></td>
+                    <td>Y</td>
+                </tr>
+                <tr>
+                    <td><b>HUIZEN</b>SEVENTYSEVEN</td>
+                    <td><div id="sprite-3a" class="sprite"></td>
+                    <td><div id="sprite-3b" class="sprite"></td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td><b>ALKMAAR</b>FIFTYONE</td>
+                    <td><div id="sprite-4a" class="sprite"></td>
+                    <td><div id="sprite-4b" class="sprite"></td>
+                    <td>L</td>
+                </tr>
+                <tr>
+                    <td><b>ROTTERDAM</b>SEVENTY</td>
+                    <td><div id="sprite-5a" class="sprite"></td>
+                    <td><div id="sprite-5b" class="sprite"></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td><b>MEDEMBLIK</b>NINETY</td>
+                    <td><div id="sprite-6a" class="sprite"></td>
+                    <td><div id="sprite-6b" class="sprite"></td>
+                    <td>L</td>
+                </tr>
+                <tr>
+                    <td><b>HOORN</b>EIGHTYONE</td>
+                    <td><div id="sprite-7a" class="sprite"></td>
+                    <td><div id="sprite-7b" class="sprite"></td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td><b>LELYSTAD</b>FIFTY</td>
+                    <td><div id="sprite-8a" class="sprite"></td>
+                    <td><div id="sprite-8b" class="sprite"></td>
+                    <td>Z</td>
+                </tr>
+                <tr>
+                    <td><b>HAARLEM</b>EIGHTYFOUR</td>
+                    <td><div id="sprite-9a" class="sprite"></td>
+                    <td><div id="sprite-9b" class="sprite"></td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <td><b>LEEUWARDEN</b>FIFTYSEVEN</td>
+                    <td><div id="sprite-10a" class="sprite"></td>
+                    <td><div id="sprite-10b" class="sprite"></td>
+                    <td>I</td>
+                </tr>
+                <tr>
+                    <td><b>APELDOORN</b>FOUR</td>
+                    <td><div id="sprite-11a" class="sprite"></td>
+                    <td><div id="sprite-11b" class="sprite"></td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <td><b>MONNICKENDAM</b>FIFTYFIVE</td>
+                    <td><div id="sprite-12a" class="sprite"></td>
+                    <td><div id="sprite-12b" class="sprite"></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td><b>UTRECHT</b>THIRTYONE</td>
+                    <td><div id="sprite-13a" class="sprite"></td>
+                    <td><div id="sprite-13b" class="sprite"></td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <td><b>LEMMER</b>FORTYSIX</td>
+                    <td><div id="sprite-14a" class="sprite"></td>
+                    <td><div id="sprite-14b" class="sprite"></td>
+                    <td>Z</td>
+                </tr>
+                <tr>
+                    <td><b>THEHAGUE</b>FIFTYSIX</td>
+                    <td><div id="sprite-15a" class="sprite"></td>
+                    <td><div id="sprite-15b" class="sprite"></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td><b>HARLINGEN</b>NINETYTHREE</td>
+                    <td><div id="sprite-16a" class="sprite"></td>
+                    <td><div id="sprite-16b" class="sprite"></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td><b>ENKHUIZEN</b>THIRTY</td>
+                    <td><div id="sprite-17a" class="sprite"></td>
+                    <td><div id="sprite-17b" class="sprite"></td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <td><b>ARNHEM</b>FOURTYONE</td>
+                    <td><div id="sprite-18a" class="sprite"></td>
+                    <td><div id="sprite-18b" class="sprite"></td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td><b>AMERSFOORT</b>NINETYEIGHT</td>
+                    <td><div id="sprite-19a" class="sprite"></td>
+                    <td><div id="sprite-19b" class="sprite"></td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <td><b>ZWOLLE</b>FIVE</td>
+                    <td><div id="sprite-20a" class="sprite"></td>
+                    <td><div id="sprite-20b" class="sprite"></td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td><b>ELBURG</b>TWO</td>
+                    <td><div id="sprite-21a" class="sprite"></td>
+                    <td><div id="sprite-21b" class="sprite"></td>
+                    <td>E</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p>
+            We didn't use the last string ("AMSTERDAMSIXTYSIX") and one graph yet. We got a new phrase "CYCLE LF ZUIDERZEEROUTE". <a href="https://en.wikipedia.org/wiki/LF-routes">LF-routes</a> are long-distance cycling routes in Netherlands, and LF Zuiderzeeroute is a route that goes around <a href="https://en.wikipedia.org/wiki/Zuiderzee">Zuiderzee</a> in a cycle. LF Zuiderzeeroute goes through 9 of the cities/towns used in the puzzle so far, which corresponds to the 9 nodes in the unused graph. Using the string, node 66 can be matched with Amsterdam, and by guessing (sorry) the right orientation (node 83 corresponds with going clockwise to Monnickendam) all nodes can be matched to a city/town. Using tens digit to sort and ones digit to index, we can extract the final answer <a href="https://en.wikipedia.org/wiki/Hovenring">HOVENRING</a>, which is a cyclic bridge for cyclists in Netherlands.
+        </p>
+        
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+            <img src="zuiderzee.png" style="width: 40%"></img>
+            
+            <table style="font-size: 0.8em; width: 50%;">
+                <tbody>
+                    <tr>
+                        <th>City/Town</th>
+                        <th>Node</th>
+                        <th>Extracted Letter</th>
+                    </tr>
+                    <tr>
+                        <td>HUIZEN</td>
+                        <td>11</td>
+                        <td>H</td>
+                    </tr>
+                    <tr>
+                        <td>HOORN</td>
+                        <td>22</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>VOLENDAM</td>
+                        <td>31</td>
+                        <td>V</td>
+                    </tr>
+                    <tr>
+                        <td>LEMMER</td>
+                        <td>42</td>
+                        <td>E</td>
+                    </tr>
+                    <tr>
+                        <td>ENKHUIZEN</td>
+                        <td>52</td>
+                        <td>N</td>
+                    </tr>
+                    <tr>
+                        <td>AMSTERDAM</td>
+                        <td>66</td>
+                        <td>R</td>
+                    </tr>
+                    <tr>
+                        <td>MEDEMBLIK</td>
+                        <td>78</td>
+                        <td>I</td>
+                    </tr>
+                    <tr>
+                        <td>MONNICKENDAM</td>
+                        <td>83</td>
+                        <td>N</td>
+                    </tr>
+                    <tr>
+                        <td>ELBURG</td>
+                        <td>96</td>
+                        <td>G</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>
+            I'm interested in visiting Netherlands because I'm curious about how they reduced car dependency. They have extensive cycling infrastructure, some of which are featured in this puzzle.
+        </p>
+    </main>
+</body>
